@@ -73,7 +73,7 @@ const heroWords = [
   { word: "every packet", status: "TUN / ACTIVE" },
   { word: "DNS queries", status: "DNS / GUARDED" },
   { word: "AnyTLS flows", status: "ANYTLS / READY" },
-  { word: "route intent", status: "RULES / SYNCED" },
+  { word: "rule sets", status: "RULES / SYNCED" },
 ];
 
 let heroIndex = 0;
