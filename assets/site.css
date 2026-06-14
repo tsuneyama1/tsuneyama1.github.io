@@ -86,8 +86,6 @@ a {
     linear-gradient(18deg, rgba(212, 179, 107, 0.09), transparent 32%),
     linear-gradient(180deg, rgba(7, 24, 42, 0.05), rgba(5, 16, 30, 0.72));
   opacity: 0.9;
-  animation: ambientShift 18s ease-in-out infinite alternate;
-  will-change: transform;
 }
 
 .site-shell::after {
@@ -101,16 +99,6 @@ a {
     linear-gradient(90deg, transparent, rgba(213, 224, 255, 0.055), transparent);
   opacity: 0.24;
   transform: translate3d(0, 0, 0);
-}
-
-.particle-field {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  opacity: 0.7;
 }
 
 .password-gate,
@@ -144,7 +132,6 @@ body.locked .intro-loader {
   border: 1px solid var(--color-line);
   border-radius: 0;
   background: rgba(2, 10, 25, 0.74);
-  backdrop-filter: blur(18px);
 }
 
 .gate-card img {
@@ -447,15 +434,7 @@ h3 {
 
 .hero-stage::after,
 .sequence-stage::after {
-  content: "";
-  position: absolute;
-  inset: -28%;
-  z-index: 0;
-  background:
-    conic-gradient(from 220deg at 50% 50%, transparent, rgba(139, 184, 255, 0.12), transparent 32%, rgba(212, 179, 107, 0.1), transparent 62%),
-    linear-gradient(130deg, transparent, rgba(213, 224, 255, 0.055), transparent);
-  opacity: 0.28;
-  transform: translate3d(0, 0, 0);
+  display: none;
 }
 
 .stage-label {
@@ -514,26 +493,29 @@ h3 {
 
 .route-packet {
   fill: var(--color-gold);
+  opacity: 0.88;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: packetPulse 4.8s ease-in-out infinite;
 }
 
 .packet-a {
-  offset-path: path("M80 126 C210 68 274 194 365 238 C476 292 532 196 640 142");
-  animation: packet 4.4s linear infinite;
+  opacity: 0.92;
 }
 
 .packet-b {
-  offset-path: path("M92 486 C202 374 290 526 380 418 C472 308 526 432 646 356");
-  animation: packet 5.2s 0.8s linear infinite;
+  opacity: 0.7;
+  animation-delay: 0.8s;
 }
 
 .packet-c {
-  offset-path: path("M118 312 C250 292 278 128 406 156 C548 188 526 560 632 520");
-  animation: packet 4.8s 1.3s linear infinite;
+  opacity: 0.78;
+  animation-delay: 1.6s;
 }
 
 .packet-d {
-  offset-path: path("M180 84 C220 220 172 330 286 372 C410 418 444 520 520 588");
-  animation: packet 5.8s 0.2s linear infinite;
+  opacity: 0.62;
+  animation-delay: 2.4s;
 }
 
 .stage-core {
@@ -554,7 +536,6 @@ h3 {
     inset 0 0 0 1px rgba(212, 179, 107, 0.18),
     0 0 52px rgba(139, 184, 255, 0.12);
   transform: translate(-50%, -50%);
-  animation: coreBreath 5.8s ease-in-out infinite;
 }
 
 .stage-core::before,
@@ -570,7 +551,11 @@ h3 {
 .stage-core::after {
   inset: 12px;
   border-color: rgba(213, 224, 255, 0.16);
-  animation: coreSpin 16s linear infinite;
+}
+
+.stage-core::before {
+  transform-origin: center;
+  animation: ringPulse 5.6s ease-in-out infinite;
 }
 
 .stage-logo {
@@ -582,12 +567,7 @@ h3 {
   object-fit: contain;
   border-radius: 50%;
   background: radial-gradient(circle, rgba(213, 224, 255, 0.08), transparent 68%);
-  mix-blend-mode: screen;
-  filter:
-    saturate(0.92)
-    contrast(1.06)
-    drop-shadow(0 0 10px rgba(212, 179, 107, 0.22))
-    drop-shadow(0 0 18px rgba(139, 184, 255, 0.14));
+  filter: none;
 }
 
 .stage-facts {
@@ -774,7 +754,8 @@ h3 {
   border: 1px solid var(--color-gold);
   border-radius: 50%;
   background: var(--color-bg-base);
-  animation: sequencePulse 4.6s ease-in-out infinite;
+  transform: translateX(calc((100vw - 200px) * 0.22));
+  animation: sequencePulse 5.4s ease-in-out infinite;
 }
 
 .terminal {
@@ -898,53 +879,26 @@ h3 {
   text-transform: uppercase;
 }
 
-@keyframes dash {
-  to { stroke-dashoffset: -140; }
-}
-
-@keyframes ambientShift {
-  from {
-    transform: translate3d(-1.2%, -0.8%, 0) scale(1);
-    opacity: 0.72;
-  }
-  to {
-    transform: translate3d(1.4%, 1.1%, 0) scale(1.04);
-    opacity: 0.96;
-  }
-}
-
-@keyframes atmosphereSweep {
-  from {
-    transform: translate3d(-2%, -1%, 0) rotate(0deg) scale(1);
-  }
-  to {
-    transform: translate3d(2%, 1%, 0) rotate(360deg) scale(1.04);
-  }
-}
-
-@keyframes coreBreath {
+@keyframes packetPulse {
   0%, 100% {
-    transform: translate(-50%, -50%) scale(1);
-    box-shadow:
-      inset 0 0 0 1px rgba(212, 179, 107, 0.18),
-      0 0 46px rgba(139, 184, 255, 0.1);
+    opacity: 0.46;
+    transform: scale(0.82);
   }
   50% {
-    transform: translate(-50%, -50%) scale(1.045);
-    box-shadow:
-      inset 0 0 0 1px rgba(212, 179, 107, 0.3),
-      0 0 74px rgba(139, 184, 255, 0.18);
+    opacity: 0.96;
+    transform: scale(1.22);
   }
 }
 
-@keyframes coreSpin {
-  to { transform: rotate(360deg); }
-}
-
-@keyframes packet {
-  from { offset-distance: 0%; opacity: 0; }
-  12%, 88% { opacity: 1; }
-  to { offset-distance: 100%; opacity: 0; }
+@keyframes ringPulse {
+  0%, 100% {
+    opacity: 0.5;
+    transform: scale(0.96);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.08);
+  }
 }
 
 @keyframes sequencePulse {

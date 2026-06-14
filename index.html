@@ -13,8 +13,8 @@
     <meta property="og:type" content="website" />
     <title>KuzenBox Pro | Private routing infrastructure</title>
     <link rel="icon" href="assets/kuzenbox.png" />
-    <link rel="stylesheet" href="assets/site.css?v=perf-particles-20260614" />
-    <script defer src="assets/site.js?v=perf-particles-20260614"></script>
+    <link rel="stylesheet" href="assets/site.css?v=low-power-20260614" />
+    <script defer src="assets/site.js?v=low-power-20260614"></script>
   </head>
   <body class="locked loading">
     <section class="password-gate" aria-labelledby="gate-title">
@@ -36,7 +36,6 @@
     </section>
 
     <div class="site-shell">
-      <canvas class="particle-field" id="particle-field" aria-hidden="true"></canvas>
       <section class="intro-loader" aria-label="Loading content">
         <div class="loader-grid">
           <span>KuzenBox Pro</span>
@@ -72,7 +71,7 @@
               <span>Live route plane</span>
               <strong id="stage-status">TUN / ACTIVE</strong>
             </div>
-            <svg class="route-map" viewBox="0 0 720 640" role="img" aria-label="Animated route topology">
+            <svg class="route-map" viewBox="0 0 720 640" role="img" aria-label="Static route topology">
               <defs>
                 <linearGradient id="routeFlow" x1="0" y1="0" x2="1" y2="1">
                   <stop offset="0%" stop-color="#d5e0ff" />
@@ -92,10 +91,10 @@
               <circle class="route-node" cx="646" cy="356" r="12" />
               <circle class="route-node" cx="632" cy="520" r="12" />
               <circle class="route-node" cx="520" cy="588" r="12" />
-              <circle class="route-packet packet-a" cx="0" cy="0" r="6" />
-              <circle class="route-packet packet-b" cx="0" cy="0" r="5" />
-              <circle class="route-packet packet-c" cx="0" cy="0" r="5" />
-              <circle class="route-packet packet-d" cx="0" cy="0" r="4" />
+              <circle class="route-packet packet-a" cx="514" cy="206" r="6" />
+              <circle class="route-packet packet-b" cx="432" cy="382" r="5" />
+              <circle class="route-packet packet-c" cx="546" cy="304" r="5" />
+              <circle class="route-packet packet-d" cx="384" cy="438" r="4" />
             </svg>
             <div class="stage-core" aria-hidden="true">
               <img class="stage-logo" src="assets/kuzenbox.png" alt="" width="96" height="96" />
@@ -178,7 +177,10 @@
                 <span></span><span></span><span></span>
                 <strong>route-sequence</strong>
               </div>
-              <pre id="terminal-output">Initializing protected route...</pre>
+              <pre id="terminal-output">&gt; open route plane
+tun-in: all app traffic captured
+strict route: effective
+dns-out: protected</pre>
             </div>
           </div>
         </section>
