@@ -87,6 +87,7 @@ a {
     linear-gradient(180deg, rgba(7, 24, 42, 0.05), rgba(5, 16, 30, 0.72));
   opacity: 0.9;
   animation: ambientShift 18s ease-in-out infinite alternate;
+  will-change: transform;
 }
 
 .site-shell::after {
@@ -98,60 +99,18 @@ a {
   background:
     conic-gradient(from 18deg at 58% 44%, transparent 0deg, rgba(213, 224, 255, 0.12) 42deg, transparent 92deg, rgba(212, 179, 107, 0.08) 156deg, transparent 240deg, rgba(139, 184, 255, 0.1) 312deg, transparent 360deg),
     linear-gradient(90deg, transparent, rgba(213, 224, 255, 0.055), transparent);
-  filter: blur(28px);
-  mix-blend-mode: screen;
-  opacity: 0.42;
-  transform: translate3d(-2%, -1%, 0) rotate(0.001deg);
-  animation: atmosphereSweep 28s linear infinite;
-}
-
-.particle-field,
-.particle-field span {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
+  opacity: 0.24;
+  transform: translate3d(0, 0, 0);
 }
 
 .particle-field {
-  overflow: hidden;
-  opacity: 0.86;
-  mix-blend-mode: screen;
-}
-
-.particle-field span {
-  --particle-a: rgba(139, 184, 255, 0.6);
-  --particle-b: rgba(213, 224, 255, 0.36);
-  --particle-c: rgba(212, 179, 107, 0.22);
-  background:
-    radial-gradient(circle, var(--particle-a) 0 1.1px, transparent 2.8px) 8% 16% / 190px 210px,
-    radial-gradient(circle, var(--particle-b) 0 0.9px, transparent 3px) 42% 6% / 240px 260px,
-    radial-gradient(circle, var(--particle-c) 0 1.4px, transparent 4px) 72% 38% / 310px 280px;
-  filter: drop-shadow(0 0 5px rgba(139, 184, 255, 0.4));
-  opacity: 0.42;
-  transform: translate3d(0, 0, 0);
-  animation: particleDrift 34s linear infinite;
-}
-
-.particle-field span:nth-child(2) {
-  inset: -10%;
-  background:
-    radial-gradient(circle, rgba(139, 184, 255, 0.36) 0 1.2px, transparent 3.2px) 18% 76% / 260px 230px,
-    radial-gradient(circle, rgba(213, 224, 255, 0.28) 0 0.8px, transparent 2.6px) 84% 18% / 210px 240px;
-  filter: drop-shadow(0 0 7px rgba(139, 184, 255, 0.42));
-  opacity: 0.34;
-  animation-duration: 46s;
-  animation-direction: reverse;
-}
-
-.particle-field span:nth-child(3) {
-  inset: -18%;
-  background:
-    radial-gradient(circle, rgba(111, 168, 255, 0.18) 0 2px, transparent 8px) 12% 26% / 420px 360px,
-    radial-gradient(circle, rgba(213, 224, 255, 0.18) 0 1.6px, transparent 7px) 78% 82% / 500px 420px;
-  filter: blur(0.4px) drop-shadow(0 0 14px rgba(139, 184, 255, 0.44));
-  opacity: 0.5;
-  animation-duration: 58s;
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0.7;
 }
 
 .password-gate,
@@ -376,6 +335,12 @@ body.locked .intro-loader {
   border-top: 1px solid var(--color-line-soft);
 }
 
+.feature-section,
+.proof-section {
+  content-visibility: auto;
+  contain-intrinsic-size: 720px;
+}
+
 .hero {
   display: grid;
   grid-template-columns: minmax(0, 0.96fr) minmax(360px, 1.04fr);
@@ -489,10 +454,8 @@ h3 {
   background:
     conic-gradient(from 220deg at 50% 50%, transparent, rgba(139, 184, 255, 0.12), transparent 32%, rgba(212, 179, 107, 0.1), transparent 62%),
     linear-gradient(130deg, transparent, rgba(213, 224, 255, 0.055), transparent);
-  filter: blur(24px);
-  opacity: 0.56;
-  mix-blend-mode: screen;
-  animation: atmosphereSweep 22s linear infinite reverse;
+  opacity: 0.28;
+  transform: translate3d(0, 0, 0);
 }
 
 .stage-label {
@@ -534,21 +497,8 @@ h3 {
 .route-line-c,
 .route-line-d {
   stroke: url("#routeFlow");
-  stroke-dasharray: 1 18;
-  animation: dash 8s linear infinite;
-}
-
-.route-line-b {
-  animation-duration: 10s;
-  animation-direction: reverse;
-}
-
-.route-line-c {
-  animation-duration: 9s;
-}
-
-.route-line-d {
-  animation-duration: 12s;
+  stroke-dasharray: 2 18;
+  opacity: 0.76;
 }
 
 .route-node {
@@ -969,15 +919,6 @@ h3 {
   }
   to {
     transform: translate3d(2%, 1%, 0) rotate(360deg) scale(1.04);
-  }
-}
-
-@keyframes particleDrift {
-  from {
-    transform: translate3d(-2%, -1%, 0) rotate(0deg) scale(1);
-  }
-  to {
-    transform: translate3d(2%, 1.5%, 0) rotate(360deg) scale(1.04);
   }
 }
 
