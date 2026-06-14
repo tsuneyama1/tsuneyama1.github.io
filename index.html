@@ -13,8 +13,8 @@
     <meta property="og:type" content="website" />
     <title>KuzenBox Pro | Private routing infrastructure</title>
     <link rel="icon" href="assets/kuzenbox.png" />
-    <link rel="stylesheet" href="assets/site.css?v=flow-text-2-20260614" />
-    <script defer src="assets/site.js?v=flow-text-2-20260614"></script>
+    <link rel="stylesheet" href="assets/site.css?v=route-flow-20260614" />
+    <script defer src="assets/site.js?v=route-flow-20260614"></script>
   </head>
   <body class="locked loading">
     <section class="password-gate" aria-labelledby="gate-title">
@@ -71,33 +71,45 @@
               <span>Live route plane</span>
               <strong id="stage-status">TUN / ACTIVE</strong>
             </div>
-            <svg class="route-map" viewBox="0 0 720 640" role="img" aria-label="Static route topology">
-              <defs>
-                <linearGradient id="routeFlow" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0%" stop-color="#d5e0ff" />
-                  <stop offset="55%" stop-color="#8bb8ff" />
-                  <stop offset="100%" stop-color="#d4b36b" />
-                </linearGradient>
-              </defs>
-              <path class="route-line route-line-a" d="M80 126 C210 68 274 194 365 238 C476 292 532 196 640 142" />
-              <path class="route-line route-line-b" d="M92 486 C202 374 290 526 380 418 C472 308 526 432 646 356" />
-              <path class="route-line route-line-c" d="M118 312 C250 292 278 128 406 156 C548 188 526 560 632 520" />
-              <path class="route-line route-line-d" d="M180 84 C220 220 172 330 286 372 C410 418 444 520 520 588" />
-              <circle class="route-node core-node" cx="360" cy="318" r="74" />
-              <circle class="route-node" cx="80" cy="126" r="12" />
-              <circle class="route-node" cx="92" cy="486" r="12" />
-              <circle class="route-node" cx="118" cy="312" r="12" />
-              <circle class="route-node" cx="640" cy="142" r="12" />
-              <circle class="route-node" cx="646" cy="356" r="12" />
-              <circle class="route-node" cx="632" cy="520" r="12" />
-              <circle class="route-node" cx="520" cy="588" r="12" />
-              <circle class="route-packet packet-a" cx="514" cy="206" r="6" />
-              <circle class="route-packet packet-b" cx="432" cy="382" r="5" />
-              <circle class="route-packet packet-c" cx="546" cy="304" r="5" />
-              <circle class="route-packet packet-d" cx="384" cy="438" r="4" />
-            </svg>
-            <div class="stage-core" aria-hidden="true">
-              <img class="stage-logo" src="assets/kuzenbox.png" alt="" width="96" height="96" />
+            <div class="route-plane">
+              <svg class="route-map" viewBox="0 0 720 640" role="img" aria-label="Animated route topology">
+                <defs>
+                  <linearGradient id="routeFlow" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#d5e0ff" />
+                    <stop offset="55%" stop-color="#8bb8ff" />
+                    <stop offset="100%" stop-color="#d4b36b" />
+                  </linearGradient>
+                </defs>
+                <path class="route-line route-line-a" d="M80 126 C210 68 274 194 365 238 C476 292 532 196 640 142" />
+                <path class="route-line route-line-b" d="M92 486 C202 374 290 526 380 418 C472 308 526 432 646 356" />
+                <path class="route-line route-line-c" d="M118 312 C250 292 278 128 406 156 C548 188 526 560 632 520" />
+                <path class="route-line route-line-d" d="M180 84 C220 220 172 330 286 372 C410 418 444 520 520 588" />
+                <circle class="route-node core-node" cx="360" cy="318" r="74" />
+                <circle class="route-node" cx="80" cy="126" r="12" />
+                <circle class="route-node" cx="92" cy="486" r="12" />
+                <circle class="route-node" cx="118" cy="312" r="12" />
+                <circle class="route-node" cx="640" cy="142" r="12" />
+                <circle class="route-node" cx="646" cy="356" r="12" />
+                <circle class="route-node" cx="632" cy="520" r="12" />
+                <circle class="route-node" cx="520" cy="588" r="12" />
+                <g class="route-flows" aria-hidden="true">
+                  <circle class="flow-particle flow-gold" r="5">
+                    <animateMotion dur="6.2s" repeatCount="indefinite" path="M80 126 C210 68 274 194 365 238 C476 292 532 196 640 142" />
+                  </circle>
+                  <circle class="flow-particle flow-blue" r="3.5">
+                    <animateMotion dur="7.1s" begin="-2s" repeatCount="indefinite" path="M92 486 C202 374 290 526 380 418 C472 308 526 432 646 356" />
+                  </circle>
+                  <circle class="flow-particle flow-blue" r="3">
+                    <animateMotion dur="6.7s" begin="-3.4s" repeatCount="indefinite" path="M118 312 C250 292 278 128 406 156 C548 188 526 560 632 520" />
+                  </circle>
+                  <circle class="flow-particle flow-gold" r="4">
+                    <animateMotion dur="7.8s" begin="-1.2s" repeatCount="indefinite" path="M180 84 C220 220 172 330 286 372 C410 418 444 520 520 588" />
+                  </circle>
+                </g>
+              </svg>
+              <div class="stage-core" aria-hidden="true">
+                <img class="stage-logo" src="assets/kuzenbox.png" alt="" width="96" height="96" />
+              </div>
             </div>
             <div class="stage-facts" aria-label="Release information">
               <div><span>Version</span><strong>4.0.1</strong></div>

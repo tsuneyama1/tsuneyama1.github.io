@@ -459,13 +459,18 @@ h3 {
   font-weight: 720;
 }
 
-.route-map {
+.route-plane {
   position: relative;
   z-index: 1;
   width: 100%;
+  padding: 12px 18px;
+}
+
+.route-map {
+  display: block;
+  width: 100%;
   min-height: 330px;
   max-height: 390px;
-  padding: 12px 18px;
 }
 
 .route-line {
@@ -494,37 +499,25 @@ h3 {
   stroke: var(--color-gold);
 }
 
-.route-packet {
+.flow-particle {
+  opacity: 0.9;
+  vector-effect: non-scaling-stroke;
+  stroke: rgba(240, 245, 255, 0.24);
+  stroke-width: 1;
+}
+
+.flow-blue {
+  fill: var(--color-blue);
+}
+
+.flow-gold {
   fill: var(--color-gold);
-  opacity: 0.88;
-  transform-box: fill-box;
-  transform-origin: center;
-  animation: packetPulse 4.8s ease-in-out infinite;
-}
-
-.packet-a {
-  opacity: 0.92;
-}
-
-.packet-b {
-  opacity: 0.7;
-  animation-delay: 0.8s;
-}
-
-.packet-c {
-  opacity: 0.78;
-  animation-delay: 1.6s;
-}
-
-.packet-d {
-  opacity: 0.62;
-  animation-delay: 2.4s;
 }
 
 .stage-core {
   position: absolute;
   z-index: 2;
-  top: 50%;
+  top: 49.6875%;
   left: 50%;
   display: grid;
   place-items: center;
@@ -882,17 +875,6 @@ h3 {
   text-transform: uppercase;
 }
 
-@keyframes packetPulse {
-  0%, 100% {
-    opacity: 0.46;
-    transform: scale(0.82);
-  }
-  50% {
-    opacity: 0.96;
-    transform: scale(1.22);
-  }
-}
-
 @keyframes softLightFlow {
   from {
     opacity: 0.54;
@@ -1021,10 +1003,13 @@ h3 {
     min-height: 318px;
   }
 
+  .route-plane {
+    padding: 2px;
+  }
+
   .route-map {
     min-height: 202px;
     max-height: 218px;
-    padding: 2px;
   }
 
   .stage-label {
@@ -1162,5 +1147,9 @@ h3 {
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
     transition-duration: 1ms !important;
+  }
+
+  .route-flows {
+    display: none;
   }
 }
