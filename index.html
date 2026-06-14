@@ -1,231 +1,194 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="KuzenBox Pro 下载站。面向 Windows 用户的高级代理客户端，支持 TUN 全局接管、DNS 防泄漏、AnyTLS 与 sing-box 内核。"
+      content="KuzenBox Pro download site. A Windows proxy client with TUN routing, DNS leak protection, AnyTLS support, and a sing-box core."
     />
     <meta name="theme-color" content="#020A19" />
     <meta property="og:title" content="KuzenBox Pro" />
-    <meta property="og:description" content="全局接管，隐私不旁路。" />
+    <meta property="og:description" content="Route every packet with intent." />
     <meta property="og:type" content="website" />
-    <title>KuzenBox Pro | 全局接管，隐私不旁路</title>
+    <title>KuzenBox Pro | Private routing infrastructure</title>
     <link rel="icon" href="assets/kuzenbox.png" />
     <link rel="stylesheet" href="assets/site.css" />
     <script defer src="assets/site.js"></script>
   </head>
-  <body class="locked">
+  <body class="locked loading">
     <section class="password-gate" aria-labelledby="gate-title">
       <div class="gate-card">
         <img src="assets/kuzenbox.png" alt="" width="52" height="52" />
         <p class="eyebrow">Private access</p>
-        <h1 id="gate-title">访问 KuzenBox Pro 下载站</h1>
-        <p>请输入访问密码。验证通过后，本次浏览器会话内可继续浏览与下载。</p>
+        <h1 id="gate-title">Enter KuzenBox Pro</h1>
+        <p>Type the access password to open the download site for this browser session.</p>
         <form id="password-form" autocomplete="off">
-          <label for="site-password">访问密码</label>
+          <label for="site-password">Access password</label>
           <div class="password-row">
             <input id="site-password" name="password" type="password" inputmode="numeric" required autofocus />
-            <button class="button primary" type="submit">进入</button>
+            <button class="button primary" type="submit">Enter</button>
           </div>
           <p class="gate-error" id="password-error" role="alert" aria-live="polite"></p>
         </form>
-        <noscript>此网站需要启用 JavaScript 后输入访问密码。</noscript>
+        <noscript>This site requires JavaScript to validate the access password.</noscript>
       </div>
     </section>
 
     <div class="site-shell">
-      <header class="topbar" aria-label="站点导航">
-        <a class="brand" href="#top" aria-label="KuzenBox Pro 首页">
-          <img src="assets/kuzenbox.png" alt="" width="34" height="34" />
+      <section class="intro-loader" aria-label="Loading content">
+        <div class="loader-grid">
+          <span>KuzenBox Pro</span>
+          <span>Loading content</span>
+          <strong id="loader-count">0%</strong>
+        </div>
+      </section>
+
+      <header class="topbar" aria-label="Site navigation">
+        <a class="brand" href="#top" aria-label="KuzenBox Pro home">
+          <img src="assets/kuzenbox.png" alt="" width="32" height="32" />
           <span>KuzenBox Pro</span>
         </a>
-        <nav class="nav-links" aria-label="页面导航">
-          <a href="#features">Capabilities</a>
-          <a href="#proof">Routing</a>
-          <a href="#download">Download</a>
-        </nav>
+        <a class="top-download download-link" href="#" download>Download software</a>
       </header>
 
       <main id="top">
-        <section class="hero" aria-labelledby="hero-title">
+        <section class="hero cinematic-section" aria-labelledby="hero-title">
           <div class="hero-copy">
-            <p class="eyebrow">Private network infrastructure</p>
-            <h1 id="hero-title">全局接管<br />隐私不旁路</h1>
+            <p class="eyebrow">Private routing infrastructure</p>
+            <h1 id="hero-title">
+              Route<br />
+              <span id="hero-word">every packet</span><br />
+              with intent.
+            </h1>
             <p class="hero-lede">
-              为需要稳定代理、TUN 接管与 DNS 防泄漏的 Windows 用户打造。少一点配置摩擦，多一层连接确定性。
+              A Windows proxy client built for TUN-level control, DNS leak protection, and modern sing-box routing.
             </p>
-            <div class="hero-actions">
-              <a class="button primary download-link" href="#" download>
-                <span>Download installer</span>
-                <span class="button-meta">Windows 安装器</span>
-              </a>
-              <a class="button secondary" href="#features">Explore capabilities</a>
-            </div>
-            <dl class="release-facts" aria-label="版本信息">
-              <div>
-                <dt>版本</dt>
-                <dd>4.0.1-2024-12-12</dd>
-              </div>
-              <div>
-                <dt>大小</dt>
-                <dd>约 38.7 MiB</dd>
-              </div>
-              <div>
-                <dt>构建</dt>
-                <dd>2026-06-13</dd>
-              </div>
-            </dl>
           </div>
 
-          <div class="hero-visual" aria-label="KuzenBox Pro 网络通道可视化">
-            <div class="status-panel">
-              <div class="panel-header">
-                <span class="status-dot"></span>
-                <span>SECURE ROUTE</span>
-              </div>
-              <div class="network-map">
-                <svg viewBox="0 0 520 420" role="img" aria-label="应用流量进入 TUN 安全通道">
-                  <defs>
-                    <linearGradient id="flow" x1="0" x2="1" y1="0" y2="1">
-                      <stop offset="0%" stop-color="#d5e0ff" />
-                      <stop offset="58%" stop-color="#8bb8ff" />
-                      <stop offset="100%" stop-color="#d4b36b" />
-                    </linearGradient>
-                    <filter id="glow">
-                      <feGaussianBlur stdDeviation="4" result="blur" />
-                      <feMerge>
-                        <feMergeNode in="blur" />
-                        <feMergeNode in="SourceGraphic" />
-                      </feMerge>
-                    </filter>
-                  </defs>
-                  <path class="route route-a" d="M74 92 C182 52 238 150 300 188 C366 230 412 202 460 146" />
-                  <path class="route route-b" d="M58 310 C162 250 212 326 284 268 C352 214 394 286 472 246" />
-                  <path class="route route-c" d="M78 206 C168 202 212 110 292 130 C380 152 386 348 468 330" />
-                  <circle class="node node-core" cx="268" cy="210" r="58" />
-                  <circle class="node" cx="74" cy="92" r="12" />
-                  <circle class="node" cx="58" cy="310" r="12" />
-                  <circle class="node" cx="78" cy="206" r="12" />
-                  <circle class="node" cx="460" cy="146" r="12" />
-                  <circle class="node" cx="472" cy="246" r="12" />
-                  <circle class="node" cx="468" cy="330" r="12" />
-                  <circle class="packet packet-a" cx="0" cy="0" r="6" />
-                  <circle class="packet packet-b" cx="0" cy="0" r="5" />
-                  <circle class="packet packet-c" cx="0" cy="0" r="5" />
-                </svg>
-                <img class="core-logo" src="assets/kuzenbox.png" alt="KuzenBox Pro" width="96" height="96" />
-              </div>
-              <div class="panel-readout" aria-label="连接状态">
-                <span>TUN</span>
-                <strong>ON</strong>
-                <span>DNS</span>
-                <strong>PROTECTED</strong>
-                <span>CORE</span>
-                <strong>sing-box</strong>
-              </div>
+          <div class="hero-stage" aria-label="Animated KuzenBox routing map">
+            <div class="stage-label">
+              <span>Live route plane</span>
+              <strong id="stage-status">TUN / ACTIVE</strong>
+            </div>
+            <svg class="route-map" viewBox="0 0 720 640" role="img" aria-label="Animated route topology">
+              <defs>
+                <linearGradient id="routeFlow" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#d5e0ff" />
+                  <stop offset="55%" stop-color="#8bb8ff" />
+                  <stop offset="100%" stop-color="#d4b36b" />
+                </linearGradient>
+              </defs>
+              <path class="route-line route-line-a" d="M80 126 C210 68 274 194 365 238 C476 292 532 196 640 142" />
+              <path class="route-line route-line-b" d="M92 486 C202 374 290 526 380 418 C472 308 526 432 646 356" />
+              <path class="route-line route-line-c" d="M118 312 C250 292 278 128 406 156 C548 188 526 560 632 520" />
+              <path class="route-line route-line-d" d="M180 84 C220 220 172 330 286 372 C410 418 444 520 520 588" />
+              <circle class="route-node core-node" cx="360" cy="318" r="74" />
+              <circle class="route-node" cx="80" cy="126" r="12" />
+              <circle class="route-node" cx="92" cy="486" r="12" />
+              <circle class="route-node" cx="118" cy="312" r="12" />
+              <circle class="route-node" cx="640" cy="142" r="12" />
+              <circle class="route-node" cx="646" cy="356" r="12" />
+              <circle class="route-node" cx="632" cy="520" r="12" />
+              <circle class="route-node" cx="520" cy="588" r="12" />
+              <circle class="route-packet packet-a" cx="0" cy="0" r="6" />
+              <circle class="route-packet packet-b" cx="0" cy="0" r="5" />
+              <circle class="route-packet packet-c" cx="0" cy="0" r="5" />
+              <circle class="route-packet packet-d" cx="0" cy="0" r="4" />
+            </svg>
+            <img class="stage-logo" src="assets/kuzenbox.png" alt="KuzenBox Pro" width="96" height="96" />
+            <div class="stage-facts" aria-label="Release information">
+              <div><span>Version</span><strong>4.0.1</strong></div>
+              <div><span>Installer</span><strong>38.7 MiB</strong></div>
+              <div><span>Core</span><strong>sing-box</strong></div>
             </div>
           </div>
         </section>
 
-        <section id="features" class="section" aria-labelledby="features-title">
-          <div class="section-heading split-heading">
-            <p class="eyebrow">Core capabilities</p>
-            <h2 id="features-title">把复杂网络能力，收束成清晰的控制面。</h2>
-            <p>
-              不把技术藏进夸张的视觉效果里。每一项能力都像城市基础设施一样清楚、稳定、可被信任。
-            </p>
+        <section id="features" class="cinematic-section feature-section" aria-labelledby="features-title">
+          <div class="section-heading">
+            <p class="eyebrow">Capabilities</p>
+            <h2 id="features-title">Built like network architecture, not a switchboard.</h2>
           </div>
 
-          <div class="bento-grid">
-            <article class="bento-card wide">
-              <div class="card-kicker">TUN mode</div>
-              <h3>TUN 全局接管</h3>
-              <p>让浏览器、终端与常见应用走进同一条受控通道，减少“某个应用绕过代理”的不确定感。</p>
-              <div class="mini-tunnel" aria-hidden="true">
-                <span></span><span></span><span></span>
-              </div>
-            </article>
+          <div class="feature-layout">
+            <div class="feature-index" aria-label="Capability index">
+              <button class="feature-tab is-active" type="button" data-feature="0">
+                <span>01</span>
+                <strong>TUN Plane</strong>
+              </button>
+              <button class="feature-tab" type="button" data-feature="1">
+                <span>02</span>
+                <strong>DNS Guard</strong>
+              </button>
+              <button class="feature-tab" type="button" data-feature="2">
+                <span>03</span>
+                <strong>AnyTLS</strong>
+              </button>
+              <button class="feature-tab" type="button" data-feature="3">
+                <span>04</span>
+                <strong>Route Sets</strong>
+              </button>
+            </div>
 
-            <article class="bento-card">
-              <div class="card-kicker safe">DNS</div>
-              <h3>DNS 防泄漏</h3>
-              <p>减少域名查询绕行风险，让隐私保护从解析开始。</p>
-              <div class="signal-bars" aria-hidden="true">
-                <span></span><span></span><span></span><span></span>
-              </div>
-            </article>
-
-            <article class="bento-card">
-              <div class="card-kicker">AnyTLS</div>
-              <h3>AnyTLS 一等支持</h3>
-              <p>把 AnyTLS 作为一等配置类型导入、管理与链式组合。</p>
-              <code>anytls:// import ready</code>
-            </article>
-
-            <article class="bento-card tall">
-              <div class="card-kicker">Core</div>
-              <h3>sing-box 内核</h3>
-              <p>基于现代代理内核，兼顾协议能力与路由灵活性。</p>
-              <ul class="clean-list">
-                <li>sing-box 1.13.13 target</li>
-                <li>kuzenbox_core launcher</li>
-                <li>route-first workflow</li>
-              </ul>
-            </article>
-
-            <article class="bento-card">
-              <div class="card-kicker">Protocols</div>
-              <h3>多协议配置管理</h3>
-              <p>支持 VMess、VLESS、Trojan、Shadowsocks、Hysteria2、TUIC、AnyTLS 等配置入口。</p>
-            </article>
-
-            <article class="bento-card wide accent">
-              <div class="card-kicker">Rules</div>
-              <h3>订阅与路由</h3>
-              <p>集中管理订阅、路由规则与连接配置，把日常代理操作压到更短路径里。</p>
-              <div class="route-strip" aria-hidden="true">
-                <span>subscription</span>
-                <span>route set</span>
-                <span>proxy chain</span>
-              </div>
-            </article>
+            <div class="feature-panels">
+              <article class="feature-panel is-active">
+                <p class="card-kicker">All traffic in one plane</p>
+                <h3>TUN-level routing for apps that ignore proxy settings.</h3>
+                <p>Browsers, terminals, tools, and common desktop clients move into a controlled route surface.</p>
+              </article>
+              <article class="feature-panel">
+                <p class="card-kicker">Resolution stays inside</p>
+                <h3>DNS protection starts before a connection is made.</h3>
+                <p>KuzenBox Pro keeps DNS traffic on the protected path and reduces accidental resolver bypass.</p>
+              </article>
+              <article class="feature-panel">
+                <p class="card-kicker">Modern profile support</p>
+                <h3>AnyTLS is treated as a first-class profile type.</h3>
+                <p>Import raw links, compatible configuration, and chain AnyTLS into existing proxy workflows.</p>
+              </article>
+              <article class="feature-panel">
+                <p class="card-kicker">Rules as infrastructure</p>
+                <h3>Subscriptions, route sets, and chains stay in one operating surface.</h3>
+                <p>Keep daily proxy operation readable without flattening every decision into a single toggle.</p>
+              </article>
+            </div>
           </div>
         </section>
 
-        <section id="proof" class="section proof" aria-labelledby="proof-title">
-          <div class="section-heading split-heading">
-            <p class="eyebrow">Interactive proof</p>
-            <h2 id="proof-title">看见 DNS 请求如何被收束。</h2>
-            <p>用一段轻量的路径演示，表达 KuzenBox Pro 如何把请求导入受控通道。</p>
+        <section id="proof" class="cinematic-section proof-section" aria-labelledby="proof-title">
+          <div class="section-heading">
+            <p class="eyebrow">Automatic routing sequence</p>
+            <h2 id="proof-title">Watch requests move into a protected path.</h2>
           </div>
 
-          <div class="proof-stage">
-            <div class="dns-visual" aria-hidden="true">
+          <div class="sequence-stage">
+            <div class="sequence-track" aria-hidden="true">
               <div class="endpoint app">APP</div>
               <div class="endpoint shield">KB</div>
               <div class="endpoint remote">REMOTE</div>
-              <div class="dns-line"></div>
-              <div class="dns-pulse"></div>
+              <div class="sequence-line"></div>
+              <div class="sequence-pulse"></div>
             </div>
             <div class="terminal" aria-live="polite">
               <div class="terminal-header">
                 <span></span><span></span><span></span>
-                <strong>dns-check</strong>
+                <strong>route-sequence</strong>
               </div>
-              <pre id="terminal-output">等待模拟开始...</pre>
-              <button class="button primary small" id="run-proof" type="button">模拟保护路径</button>
+              <pre id="terminal-output">Initializing protected route...</pre>
             </div>
           </div>
         </section>
 
-        <section id="download" class="download-section" aria-labelledby="download-title">
+        <section id="download" class="download-section cinematic-section" aria-labelledby="download-title">
           <p class="eyebrow">Ready</p>
-          <h2 id="download-title">接管下一条连接。</h2>
-          <p>Windows 安装器，约 38.7 MiB。建议从本页面按钮进入 GitHub Release 下载，便于校验版本来源。</p>
+          <h2 id="download-title">Install the route plane.</h2>
+          <p>
+            Windows installer, approximately 38.7 MiB. Download is served from the public GitHub Release for source
+            clarity and version traceability.
+          </p>
           <a class="button primary large download-link" href="#" download>
-            <span>下载 kuzenbox_pro-setup.exe</span>
+            <span>Download kuzenbox_pro-setup.exe</span>
             <span class="button-meta">v4.0.1-pro</span>
           </a>
           <p class="hash-line">SHA256: <code>AD20F25A7D3954C24549CB48EADC0A1571FB26C0FEB570CCABCE36190A7089DF</code></p>

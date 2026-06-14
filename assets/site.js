@@ -5,6 +5,7 @@ const localDownloadUrl = "./downloads/kuzenbox_pro-setup.exe";
 const activeDownloadUrl = location.protocol === "file:" ? localDownloadUrl : releaseDownloadUrl;
 const accessPasswordHash = "184dc9f5cd08a35edd6d01d5eb38782b1f87d37a79d3870c18d0c7361c20a507";
 const accessSessionKey = "kuzenbox_pro_access";
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 async function sha256Hex(value) {
   const data = new TextEncoder().encode(value);
@@ -14,6 +15,29 @@ async function sha256Hex(value) {
 
 function unlockSite() {
   document.body.classList.remove("locked");
+  runIntro();
+}
+
+function runIntro() {
+  const counter = document.querySelector("#loader-count");
+  if (!counter || !document.body.classList.contains("loading")) return;
+
+  if (reduceMotion) {
+    counter.textContent = "100%";
+    document.body.classList.remove("loading");
+    return;
+  }
+
+  let value = 0;
+  const timer = window.setInterval(() => {
+    value += Math.ceil((100 - value) / 7);
+    counter.textContent = `${Math.min(value, 100)}%`;
+
+    if (value >= 100) {
+      window.clearInterval(timer);
+      window.setTimeout(() => document.body.classList.remove("loading"), 320);
+    }
+  }, 58);
 }
 
 if (sessionStorage.getItem(accessSessionKey) === "granted") {
@@ -34,24 +58,64 @@ document.querySelector("#password-form")?.addEventListener("submit", async (even
     return;
   }
 
-  error.textContent = "密码不正确。";
+  error.textContent = "Incorrect password.";
   input.select();
 });
 
 document.querySelectorAll(".download-link").forEach((link) => {
   link.href = activeDownloadUrl;
-  link.setAttribute("aria-label", "下载 KuzenBox Pro Windows 安装器");
+  link.setAttribute("aria-label", "Download KuzenBox Pro Windows installer");
 });
 
-const proofButton = document.querySelector("#run-proof");
-const terminal = document.querySelector("#terminal-output");
+const heroWord = document.querySelector("#hero-word");
+const stageStatus = document.querySelector("#stage-status");
+const heroWords = [
+  { word: "every packet", status: "TUN / ACTIVE" },
+  { word: "DNS queries", status: "DNS / GUARDED" },
+  { word: "AnyTLS flows", status: "ANYTLS / READY" },
+  { word: "route intent", status: "RULES / SYNCED" },
+];
 
+let heroIndex = 0;
+if (heroWord && !reduceMotion) {
+  window.setInterval(() => {
+    heroIndex = (heroIndex + 1) % heroWords.length;
+    heroWord.classList.add("is-changing");
+
+    window.setTimeout(() => {
+      heroWord.textContent = heroWords[heroIndex].word;
+      if (stageStatus) stageStatus.textContent = heroWords[heroIndex].status;
+      heroWord.classList.remove("is-changing");
+    }, 360);
+  }, 2800);
+}
+
+const featureTabs = [...document.querySelectorAll(".feature-tab")];
+const featurePanels = [...document.querySelectorAll(".feature-panel")];
+let activeFeature = 0;
+
+function setFeature(index) {
+  activeFeature = index % featurePanels.length;
+  featureTabs.forEach((tab, tabIndex) => tab.classList.toggle("is-active", tabIndex === activeFeature));
+  featurePanels.forEach((panel, panelIndex) => panel.classList.toggle("is-active", panelIndex === activeFeature));
+}
+
+featureTabs.forEach((tab) => {
+  tab.addEventListener("click", () => {
+    const next = Number(tab.dataset.feature || 0);
+    setFeature(next);
+  });
+});
+
+if (featurePanels.length && !reduceMotion) {
+  window.setInterval(() => setFeature(activeFeature + 1), 4200);
+}
+
+const terminal = document.querySelector("#terminal-output");
 const proofLines = [
-  "> query google.com A",
-  "app -> KuzenBox Pro DNS guard",
-  "route: TUN inbound",
-  "dns-out: protected",
-  "STATUS: SECURE. ZERO LEAKS DETECTED.",
+  ["> open route plane", "tun-in: all app traffic captured", "strict route: effective", "dns-out: protected"],
+  ["> resolve example.com", "query intercepted before local resolver", "request stays inside tunnel", "STATUS: ZERO LEAK PATH"],
+  ["> import anytls profile", "profile type: first-class", "chain generation: available", "route decision: ready"],
 ];
 
 function typeLines(lines, target) {
@@ -70,16 +134,24 @@ function typeLines(lines, target) {
       target.textContent += "\n";
       lineIndex += 1;
       charIndex = 0;
-      setTimeout(tick, 180);
+      window.setTimeout(tick, 180);
       return;
     }
 
-    setTimeout(tick, 18);
+    window.setTimeout(tick, reduceMotion ? 1 : 18);
   }
 
   tick();
 }
 
-proofButton?.addEventListener("click", () => {
-  typeLines(proofLines, terminal);
-});
+let terminalIndex = 0;
+function runTerminalSequence() {
+  if (!terminal) return;
+  typeLines(proofLines[terminalIndex], terminal);
+  terminalIndex = (terminalIndex + 1) % proofLines.length;
+}
+
+runTerminalSequence();
+if (!reduceMotion) {
+  window.setInterval(runTerminalSequence, 5200);
+}
