@@ -78,27 +78,30 @@ a {
 .site-shell::before {
   content: "";
   position: fixed;
-  inset: 0;
+  inset: -12%;
   z-index: 0;
   pointer-events: none;
   background:
-    linear-gradient(105deg, transparent 0%, rgba(139, 184, 255, 0.12) 28%, transparent 54%),
-    linear-gradient(18deg, rgba(212, 179, 107, 0.09), transparent 32%),
+    linear-gradient(105deg, transparent 4%, rgba(139, 184, 255, 0.16) 30%, transparent 58%),
+    linear-gradient(18deg, rgba(212, 179, 107, 0.08), transparent 34%),
     linear-gradient(180deg, rgba(7, 24, 42, 0.05), rgba(5, 16, 30, 0.72));
-  opacity: 0.9;
+  opacity: 0.72;
+  animation: softLightFlow 18s ease-in-out infinite alternate;
 }
 
 .site-shell::after {
   content: "";
   position: fixed;
-  inset: -18%;
+  inset: -16%;
   z-index: 0;
   pointer-events: none;
   background:
-    conic-gradient(from 18deg at 58% 44%, transparent 0deg, rgba(213, 224, 255, 0.12) 42deg, transparent 92deg, rgba(212, 179, 107, 0.08) 156deg, transparent 240deg, rgba(139, 184, 255, 0.1) 312deg, transparent 360deg),
+    linear-gradient(118deg, transparent 16%, rgba(139, 184, 255, 0.105) 42%, transparent 68%),
+    linear-gradient(245deg, transparent 20%, rgba(212, 179, 107, 0.055) 48%, transparent 72%),
     linear-gradient(90deg, transparent, rgba(213, 224, 255, 0.055), transparent);
-  opacity: 0.24;
+  opacity: 0.34;
   transform: translate3d(0, 0, 0);
+  animation: slowSheen 24s ease-in-out infinite alternate;
 }
 
 .password-gate,
@@ -354,17 +357,17 @@ p {
 
 h1 {
   max-width: 680px;
-  margin: 16px 0 22px;
+  margin: 18px 0 26px;
   color: var(--color-text-soft);
-  font-size: clamp(3.35rem, 7.6vw, 7.6rem);
+  font-size: clamp(2.92rem, 6.65vw, 6.45rem);
   font-weight: 320;
-  line-height: 0.82;
+  line-height: 1.02;
   letter-spacing: 0;
 }
 
 #hero-word {
   display: inline-block;
-  min-height: 0.86em;
+  min-height: 0.96em;
   color: var(--color-text-main);
   transition: opacity 360ms ease, transform 360ms ease;
 }
@@ -376,20 +379,20 @@ h1 {
 
 h2 {
   max-width: 780px;
-  margin: 16px 0 0;
+  margin: 18px 0 0;
   color: var(--color-text-soft);
-  font-size: clamp(2.24rem, 4.6vw, 4.85rem);
+  font-size: clamp(1.96rem, 4vw, 4.18rem);
   font-weight: 320;
-  line-height: 0.9;
+  line-height: 1.12;
   letter-spacing: 0;
 }
 
 h3 {
-  margin-bottom: 12px;
+  margin-bottom: 16px;
   color: var(--color-text-soft);
-  font-size: clamp(1.52rem, 2.8vw, 3rem);
+  font-size: clamp(1.34rem, 2.42vw, 2.52rem);
   font-weight: 330;
-  line-height: 0.92;
+  line-height: 1.18;
 }
 
 .hero-lede,
@@ -397,8 +400,8 @@ h3 {
 .feature-panel p,
 .download-section p {
   color: var(--color-text-muted);
-  font-size: clamp(0.9rem, 1vw, 1.02rem);
-  line-height: 1.58;
+  font-size: clamp(0.86rem, 0.96vw, 0.98rem);
+  line-height: 1.76;
 }
 
 .hero-lede {
@@ -890,6 +893,28 @@ h3 {
   }
 }
 
+@keyframes softLightFlow {
+  from {
+    opacity: 0.54;
+    transform: translate3d(-1.6%, -0.6%, 0) scale(1);
+  }
+  to {
+    opacity: 0.82;
+    transform: translate3d(1.8%, 0.9%, 0) scale(1.02);
+  }
+}
+
+@keyframes slowSheen {
+  from {
+    opacity: 0.24;
+    transform: translate3d(1.2%, -0.8%, 0) scale(1);
+  }
+  to {
+    opacity: 0.42;
+    transform: translate3d(-1.4%, 1.1%, 0) scale(1.025);
+  }
+}
+
 @keyframes ringPulse {
   0%, 100% {
     opacity: 0.5;
@@ -953,17 +978,20 @@ h3 {
   }
 
   h1 {
-    margin: 12px 0 16px;
-    font-size: clamp(2.9rem, 14vw, 4.15rem);
+    margin: 14px 0 18px;
+    font-size: clamp(2.64rem, 12.6vw, 3.82rem);
+    line-height: 1.08;
   }
 
   h2 {
-    margin-top: 12px;
-    font-size: clamp(2.05rem, 10vw, 3.2rem);
+    margin-top: 14px;
+    font-size: clamp(1.9rem, 8.8vw, 2.9rem);
+    line-height: 1.08;
   }
 
   h3 {
-    font-size: clamp(1.46rem, 7vw, 2.2rem);
+    font-size: clamp(1.32rem, 6.1vw, 2rem);
+    line-height: 1.12;
   }
 
   .cinematic-section {
@@ -980,8 +1008,8 @@ h3 {
   .section-heading p,
   .feature-panel p,
   .download-section p {
-    font-size: 0.88rem;
-    line-height: 1.48;
+    font-size: 0.84rem;
+    line-height: 1.68;
   }
 
   .section-heading {

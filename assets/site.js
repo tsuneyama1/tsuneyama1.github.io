@@ -67,6 +67,20 @@ if (heroWord && stageStatus) {
   stageStatus.textContent = heroWords[0].status;
 }
 
+let heroIndex = 0;
+if (heroWord && stageStatus && !reduceMotion) {
+  window.setInterval(() => {
+    heroIndex = (heroIndex + 1) % heroWords.length;
+    heroWord.classList.add("is-changing");
+
+    window.setTimeout(() => {
+      heroWord.textContent = heroWords[heroIndex].word;
+      stageStatus.textContent = heroWords[heroIndex].status;
+      heroWord.classList.remove("is-changing");
+    }, 360);
+  }, 3200);
+}
+
 const featureTabs = [...document.querySelectorAll(".feature-tab")];
 const featurePanels = [...document.querySelectorAll(".feature-panel")];
 let activeFeature = 0;
